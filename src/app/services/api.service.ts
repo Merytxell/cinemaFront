@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Movie } from '../model/movie.model';
 import { Cinema } from '../model/cinema.model';
 import { showTimes } from '../model/showTimes.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class ApiService {
 
   public getShowByMovie(id : number){
     return this.http.get<showTimes[]>(environment.host+"/showTimes/movies/" + id);
+  }
+
+  public searchCinemas (keyword : string) {
+    return this.http.get<Cinema[]>(environment.host+"/cinemas/search/" + keyword);
   }
 }

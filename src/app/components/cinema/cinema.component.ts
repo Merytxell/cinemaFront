@@ -14,14 +14,14 @@ import { showTimes } from 'src/app/model/showTimes.model';
 export class CinemaComponent implements OnInit {
 
   listCinemas: Cinema[] = []; 
-  filteredCinemas: Cinema[] = [];
+  keyword: string = '';
+  cinemas: Cinema[] = [];
   listMovies: Movie[] = [];   
   listShow : showTimes [] = [];
   error: any;
   URLStr: string = '';
-  searchTerm: string = '';
-
   selectedIdMovie: Movie | null = null;
+
   
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -61,10 +61,14 @@ export class CinemaComponent implements OnInit {
       complete: () => this.error = null
     });
   }
-  filterCinemas() {
-    this.filteredCinemas = this.listCinemas.filter(cinema =>
-      cinema.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      cinema.address.toLowerCase().includes(this.searchTerm.toLowerCase())
+  searchCinemas(keyword: string): void {
+    this.apiService.searchCinemas(keyword).subscribe(
+      (data) => {
+        this.listCinemas = data;
+      },
+      (error) => {
+        console.error('ça marche pas', error);
+      }
     );
   }
 
