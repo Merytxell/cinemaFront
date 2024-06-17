@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Cinema } from 'src/app/model/cinema.model';
 import { Movie } from 'src/app/model/movie.model';
 import { environment } from 'src/environments/environment';
-import { showTimes } from 'src/app/model/showTimes.model';
+import { ShowTime } from 'src/app/model/showTimes.model';
 
 @Component({
   selector: 'app-cinema',
@@ -17,10 +17,10 @@ export class CinemaComponent implements OnInit {
   keyword: string = '';
   cinemas: Cinema[] = [];
   listMovies: Movie[] = [];   
-  listShow : showTimes [] = [];
+  listShow : ShowTime [] = [];
   error: any;
   URLStr: string = '';
-  selectedIdMovie: Movie | null = null;
+  selectedIdMovie: number | null = null;
 
   
 
@@ -75,10 +75,15 @@ export class CinemaComponent implements OnInit {
 
   getAllShowByMovie(movie : Movie){
 
+    this.selectedIdMovie = movie.id;
     this.apiService.getShowByMovie(movie.id).subscribe({
-      next:(data) => this.listShow = data,
-      error : (err) => this.error = err.message,
-      complete:() => this.error= null
+      next: (showtimes) => {
+        movie.showTimes= showtimes;
+        // this.listShow = data;
+      },
+      error: (err) => this.error = err.message,
+      complete: () => this.error = null
     });
   }
 }
+

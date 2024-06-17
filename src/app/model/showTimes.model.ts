@@ -1,5 +1,5 @@
 
-export class showTimes {
+export class ShowTime {
     id : number;
     hour: string;
     price : number;
