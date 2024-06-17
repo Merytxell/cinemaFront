@@ -1,52 +1,54 @@
 <div class="container mt-4">
     <h1 class="mb-4">Liste des Cinémas et des Films</h1>
-  
-    <div *ngIf="error" class="alert alert-danger">
-      {{ error }}
-    </div>
-  
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary mb-4">
-      <div class="container-fluid">
-          <a class="navbar-brand"> Nos Cinémas : </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav me-auto">
-                  <li class="nav-item" *ngFor="let cinema of listCinemas">
-                      <a class="nav-link"  (click)="getAllMovieByCinema(cinema)">{{ cinema.name }} ({{ cinema.address }})</a>
-                  </li>
-              </ul>
-          </div>
-          <form class="d-flex input-group w-auto">
-            <input [(ngModel)]="keyword" placeholder="Rechercher un cinéma" name="keyword" />
-            <button class="btn btn-primary" (click)="searchCinemas(keyword)">Chercher</button>
-        </form>
-    </div>
-  </nav>
-  
-<div>
-        <h2>Films et Séances</h2>
-      <div *ngFor="let movie of listMovies">
-      <h3>{{ movie.name }}</h3>
-      <div *ngIf="movie.showTimes && movie.showTimes.length > 0">
-   
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Heure de la séance</th>
-              <th>Prix de la séance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let showTime of movie.showTimes">
-              <td>{{ showTime.hour }}</td>
-              <td>{{ showTime.price }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="listShow.length === 0">
 
-      </div>
+    <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
     </div>
-  </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand"> Nos Cinémas : </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item" *ngFor="let cinema of listCinemas">
+                        <a class="nav-link" (click)="getAllMovieByCinema(cinema)">{{ cinema.name }} ({{ cinema.address }})</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex input-group w-auto">
+                <input [(ngModel)]="keyword" placeholder="Rechercher un cinéma" name="keyword" class="form-control" />
+                <button class="btn btn-primary" (click)="searchCinemas(keyword)">Chercher</button>
+            </form>
+        </div>
+    </nav>
+
+    <div>
+        <h2>Films et Séances</h2>
+        <div *ngFor="let movie of listMovies" class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">{{ movie.name }} <small class="text-muted">{{ movie.cinema.name }}</small></h3>
+            </div>
+            <div class="card-body">
+                <div *ngIf="movie.showTimes && movie.showTimes.length > 0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Heure de la séance</th>
+                                <th>Prix de la séance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let showTime of movie.showTimes">
+                                <td>{{ showTime.hour }}</td>
+                                <td>{{ showTime.price }} €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="!movie.showTimes || movie.showTimes.length === 0">
+                    <p class="text-muted">Aucune séance trouvée pour ce film.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
