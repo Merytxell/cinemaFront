@@ -46,6 +46,10 @@ export class CinemaComponent implements OnInit {
     });
   }
 
+
+  /**
+   * list of all cinema
+   */
   getAllCinemas() {
     this.apiService.getCinema().subscribe({
       next: (data) => this.listCinemas = data,
@@ -54,6 +58,11 @@ export class CinemaComponent implements OnInit {
     });
   }
 
+
+  /**
+   * 
+   * @param cinema all movie by cinema
+   */
   getAllMovieByCinema(cinema: Cinema) {
     this.apiService.getMovieByCinema(cinema.id).subscribe({
       next: (data) => this.listMovies = data,
@@ -61,6 +70,11 @@ export class CinemaComponent implements OnInit {
       complete: () => this.error = null
     });
   }
+
+  /**
+   * 
+   * @param keyword search cinema
+   */
   searchCinemas(keyword: string): void {
     this.apiService.searchCinemas(keyword).subscribe(
       (data) => {
@@ -71,7 +85,10 @@ export class CinemaComponent implements OnInit {
       }
     );
   }
-
+/**
+ * 
+ * @param movie 
+ */
 
   getAllShowByMovie(movie : Movie){
 
@@ -79,7 +96,7 @@ export class CinemaComponent implements OnInit {
     this.apiService.getShowByMovie(movie.id).subscribe({
       next: (showtimes) => {
         movie.showTimes= showtimes;
-        // this.listShow = data;
+     
       },
       error: (err) => this.error = err.message,
       complete: () => this.error = null

@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
             this.jwtService.setToken(token);
             localStorage.setItem('access-token', JSON.stringify(token));
             localStorage.setItem('roles', btoa(JSON.stringify(this.jwtService.getUserRole())));
-            this.router.navigateByUrl("/");
+            this.router.navigateByUrl("cinema");
           }
         },
         error : () => this.error = "Username ou password erroné",
