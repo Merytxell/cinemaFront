@@ -46,6 +46,7 @@
                             <tr *ngFor="let showTime of movie.showTimes">
                                 <td>{{ showTime.hour }}</td>
                                 <td>{{ showTime.price }} €</td>
+                                <td><button class="btn btn-primary" (click)="addToCart(showTime)">Ajouter au panier</button></td>
                             </tr>
                         </tbody>
                     </table>

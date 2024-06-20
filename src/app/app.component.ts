@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   isUserLoggedIn = false;
   username: string | null = null;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public cartService : CartService) {}
 
   ngOnInit(): void {
     this.checkLoginStatus();
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
       this.checkLoginStatus();
     });
   }
+  
 
   checkLoginStatus() {
     this.isUserLoggedIn = this.authService.isConnected();

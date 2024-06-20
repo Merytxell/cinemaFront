@@ -5,6 +5,7 @@ import { Cinema } from 'src/app/model/cinema.model';
 import { Movie } from 'src/app/model/movie.model';
 import { environment } from 'src/environments/environment';
 import { ShowTime } from 'src/app/model/showTimes.model';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cinema',
@@ -24,7 +25,7 @@ export class CinemaComponent implements OnInit {
 
   
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private cartService :CartService) {}
 
   ngOnInit(): void {
     this.getAllMovies();
@@ -101,6 +102,11 @@ export class CinemaComponent implements OnInit {
       error: (err) => this.error = err.message,
       complete: () => this.error = null
     });
+  }
+
+  addToCart(showTime: ShowTime) { 
+    this.cartService.addShowTime(showTime);
+    alert('Séance ajoutée au panier !'); 
   }
 }
 

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="form col md-3 rounded-lg shadow-lg">
+        <form [formGroup]="customerForm" (ngSubmit)="onSaveCustomer(customerForm)">
+            <div class="form-group mt-2">
+                <label for="name" class="control-label font-weight-bold">Nom :</label>
+                <input type="text" formControlName="name" class="form-control" id="name" name="name">
+                <div *ngIf="customerForm.controls['name'].invalid && (customerForm.controls['name'].touched || customerForm.controls['name'].dirty)" class="alert text-danger">
+                    <div *ngIf="customerForm.controls['name'].errors?.['required']">Entrez un nom</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="firstName" class="control-label font-weight-bold">Prénom :</label>
+                <input type="text" formControlName="firstName" class="form-control" id="firstName" name="firstName">
+                <div *ngIf="customerForm.controls['firstName'].invalid && (customerForm.controls['firstName'].touched || customerForm.controls['firstName'].dirty)" class="alert text-danger">
+                    <div *ngIf="customerForm.controls['firstName'].errors?.['required']">Entrez un prénom</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="address" class="control-label font-weight-bold">Adresse :</label>
+                <input type="text" formControlName="address" class="form-control" id="address" name="address">
+                <div *ngIf="customerForm.controls['address'].invalid && (customerForm.controls['address'].touched || customerForm.controls['address'].dirty)" class="alert text-danger">
+                    <div *ngIf="customerForm.controls['address'].errors?.['required']">Entrez une adresse</div>
+                    <div *ngIf="customerForm.controls['address'].errors?.['minlength']">L'adresse doit contenir un minimum de 25 charactères</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="phone" class="control-label font-weight-bold">Téléphone :</label>
+                <input type="text" formControlName="phone" class="form-control" id="phone" name="phone">
+                <div *ngIf="customerForm.controls['phone'].invalid && (customerForm.controls['phone'].touched || customerForm.controls['phone'].dirty)" class="alert text-danger">
+                    <div *ngIf="customerForm.controls['phone'].errors?.['required']">Entrez un téléphone</div>
+                    <div *ngIf="customerForm.controls['phone'].errors?.['maxlength']">Le numéro de téléphone ne peut contenir plus de 10 chiffres</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="email" class="control-label font-weight-bold">E-mail :</label>
+                <input type="text" formControlName="email" class="form-control" id="email" name="email">
+                <div *ngIf="customerForm.controls['email'].invalid && (customerForm.controls['email'].touched || customerForm.controls['email'].dirty)" class="alert text-danger">
+                    <div *ngIf="customerForm.controls['email'].errors?.['required']">Entrez un email</div>
+                    <div *ngIf="customerForm.controls['email'].errors?.['pattern']">Veuillez entrer un email valide (ex : ex.exemple@exemple.fr)</div>
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-end m-2">
+                <button type="submit" class="btn btn-primary ">Poursuivre</button>
+            </div>
+        </form>
+        <div class="text-danger"> {{error}}</div>
+    </div>
+</div>

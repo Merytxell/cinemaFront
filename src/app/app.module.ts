@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CartComponent } from './components/cart/cart.component';
     MovieComponent,
     CinemaComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    CustomerComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

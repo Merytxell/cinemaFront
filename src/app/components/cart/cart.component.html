@@ -1,1 +1,63 @@
-<p>cart works!</p>
+<section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0">Panier</h3>
+        </div>
+
+      
+        <ng-container *ngIf="cart.size > 0; else emptyCart">
+          <div *ngFor="let showTime of cart.values()" class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+       
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img [src]=" URLStr + '/image/' + showTime.movie.id" alt="{{ showTime.movie.name }} image" class="img-fluid">
+                </div>
+             
+                <div class="col-md-4 col-lg-4 col-xl-4">
+                  <h5 class="card-title">{{ showTime.movie.name }}</h5>
+                  <p class="card-text"><span class="text-muted">Cinéma:</span> {{ showTime.movie.cinema.name }}</p>
+                  <p class="card-text"><span class="text-muted">Heure:</span> {{ showTime.hour }}</p>
+                </div>
+              
+                <div class="col-md-4 col-lg-4 col-xl-4">
+               
+                  <button class="btn btn-outline-danger" (click)="removeShowTime(showTime)">Retirer</button>
+              
+                  <input type="number" class="form-control" [(ngModel)]="showTime.quantity" disabled>
+                
+                  <button class="btn btn-outline-success" (click)="addShowTime(showTime)">Ajouter</button>
+                </div>
+                
+                <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                  <h5>{{ showTime.price * showTime.quantity }} €</h5>
+                 
+                  <button class="btn btn-link text-danger" (click)="removeShowTime(showTime)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+  
+        <ng-template #emptyCart>
+          <div class="alert alert-info">Votre panier est vide.</div>
+        </ng-template>
+
+        <div class="card mt-4" *ngIf="cart.size > 0">
+          <div class="card-body">
+            <h5 class="card-title">Prix total : {{ getTotalPrice() }} €</h5>
+   
+            <button class="btn btn-primary" (click)="onNewOrder()">Réserver maintenant</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
