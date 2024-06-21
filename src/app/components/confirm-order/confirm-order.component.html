@@ -1,0 +1,19 @@
+<div class="container">
+ 
+    <div class="card">
+        <div class="card-header">Confirmation de votre commande</div>
+        <div class="row">
+            <div class="col-md-6">   
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Commande n° : {{order.id}} </li>
+                    <li class="list-group-item">Date de la commande : {{order.date | date: "MM/dd/yyyy"}}</li>
+                    <li class="list-group-item">Montant total : {{order.totalAmount | currency: "EUR"}}</li>
+                    <li class="list-group-item">Client : {{order.customer.name}}</li>
+                </ul>     
+            </div>
+        </div>
+        <div class="d-flex justify-content-end m-2">
+            <button type="button" class="btn btn-primary" (click)="onPayOrder()">Paiement</button>
+        </div>
+    </div>
+</div>

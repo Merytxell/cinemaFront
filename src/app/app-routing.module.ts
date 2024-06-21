@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { OrderComponent } from './components/order/order.component';
+import { ConfirmOrderComponent } from './components/confirm-order/confirm-order.component';
 
 const routes: Routes = [
   { path: 'cinema', component: CinemaComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path : 'login' , component : LoginComponent},
   { path : 'cart', component : CartComponent},
   { path : 'customer', component : CustomerComponent},
-  { path : 'order', component : OrderComponent}
+  { path : 'order', component : OrderComponent},
+  { path : 'confirmOrder', component : ConfirmOrderComponent}
  
 ];
 
