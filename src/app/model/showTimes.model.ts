@@ -4,7 +4,7 @@ export class ShowTime {
     hour: string;
     price : number;
     quantity: number;
-movie: any;
+    movie: any;
   
   
   
